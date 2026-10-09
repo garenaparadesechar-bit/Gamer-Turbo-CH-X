@@ -1,16 +1,23 @@
-# Gamer Turbo CH X — proyecto Android beta
+# Gamer Turbo CH X 2.0
 
-Proyecto Java nativo Android con portada e icono incluidos.
+Android app in Java, designed for a low/mid-range phone. Build using the GitHub Actions workflow `.github/workflows/build-apk.yml`.
 
-## Funciones implementadas en esta beta
-- Monitor de RAM disponible, batería y temperatura de batería cuando Android los reporta.
-- Diagnóstico de memoria/temperatura con recomendaciones.
-- Limpieza exclusiva de la caché propia de la app y cálculo aproximado del espacio liberado.
-- Accesos para abrir Free Fire / Free Fire MAX si están instalados.
-- Acceso a ajustes de la aplicación.
-- Pantalla honesta de estado Shizuku: esta beta solo detecta si está instalado; la API privilegiada real queda pendiente y no se presenta como implementada.
+## Implemented features
+- Live RAM, battery percentage, and battery temperature where Android exposes it.
+- Diagnostic advice based on Android memory-pressure flag and battery temperature.
+- Clean the app's own cache and show estimated bytes removed.
+- Launch Free Fire / Free Fire MAX if installed.
+- Shizuku API dependency, binder/permission state, and actual privileged command execution after the user grants Shizuku permission.
+- Request Android package-manager cache trimming with `pm trim-caches 1G` (Android chooses which cache files to remove; amount freed is not guaranteed).
+- Set Android animation scales to 0.5x or restore to 1x through Shizuku.
+- Choose a launchable app and force-stop it through Shizuku, with confirmation. This does not erase app data.
+- Open display settings and this app's settings.
 
-## Compilar
-Sube el contenido de este ZIP a un repositorio GitHub, en la rama `main`. GitHub Actions compilará el APK y publicará el artefacto `Gamer-Turbo-CH-X`.
+## Important limitations
+- Shizuku must be separately installed and started by the user through Wireless debugging/ADB; this app cannot enable it by itself. The user must grant the app permission inside Shizuku.
+- Cache trimming is controlled by Android and cannot guarantee a specific amount of space. Clearing this app's own cache does not clear other apps' caches.
+- Android does not provide a general supported API for third-party apps to force CPU/GPU frequencies, guarantee lower temperatures, or promise higher game FPS. This app does not claim to do those things.
+- No game files or account data are modified.
 
-No se afirma que el proyecto haya sido compilado o probado en un dispositivo todavía. Verifica la compilación y prueba cada función en tu teléfono. El APK debug de prueba no es una versión de distribución firmada para Play Store.
+## Build
+The workflow uses JDK 17, Android SDK platform 35, Gradle 8.7 and uploads the debug APK as artifact `Gamer-Turbo-CH-X`.

@@ -8,7 +8,14 @@ android {
         applicationId 'com.ch.gamerturbox'
         minSdk 23
         targetSdk 28
-        versionCode 1
-        versionName '1.0-beta'
+        versionCode 2
+        versionName '2.0'
+        multiDexEnabled false
     }
+}
+
+
+dependencies {
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
 }
