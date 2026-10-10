@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId 'com.ch.gamerturbox'
-        minSdk 23
+        minSdk 24
         targetSdk 28
         versionCode 2
         versionName '2.0'
